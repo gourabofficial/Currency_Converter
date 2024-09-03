@@ -1,9 +1,10 @@
-const base_url = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies";
+const base_url = "https://v6.exchangerate-api.com/v6/134eda82d253ae7f7f53ce9a/pair"
 
 let dropdowns = document.querySelectorAll('.dropdown select');
 const btn = document.querySelector('form button');
 const from = document.querySelector('.from select');
 const to = document.querySelector('.to select');
+const msg = document.querySelector('.msg');
 
 
 
@@ -34,7 +35,7 @@ let updateFlag = (changeElement) => {
     img.src = newSrc;
 
 }
-btn.addEventListener('click', async(e) => {
+btn.addEventListener('click', async (e) => {
     e.preventDefault();
     let amount = document.querySelector('.amount input');
     let amountValue = amount.value;
@@ -42,11 +43,14 @@ btn.addEventListener('click', async(e) => {
     if (amountValue === '' || amountValue < 0) {
         alert('Please Enter the valid Amount');
         amount.value = 0;
-    
+
     }
-// console.log(from.value,to.vale)
-    let url = `${base_url}/${from.value.toLowerCase()}/${to.value.toLowerCase()}.json`;
+    console.log(from.value, to.value)
+    let url = `${base_url}/${from.value}/${to.value}`;
     let response = await fetch(url);
-    response = await response.json();
-    console.log(response);
+    let data = await response.json();
+    let rate = data.conversion_rate;
+    console.log(rate);
+    let result = rate * amountValue;
+    msg.innerText = `${amountValue} ${from.value} = ${result} ${to.value}`
 });
