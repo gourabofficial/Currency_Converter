@@ -1,6 +1,6 @@
 # Currency Converter
 
-- **Special Thanks to Shradha Didi**
+- **Special Thanks to Shradha Didi & My Friend Buddhadeb Koner ❤️**
 
 ## Overview
 
